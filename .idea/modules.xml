@@ -3,9 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MiniProjecfISS.iml" filepath="$PROJECT_DIR$/MiniProjecfISS.iml" />
+      <module fileurl="file://C:\Users\Fazliddin\Desktop\MiniProjecfISS\MiniProjecfISS.iml" filepath="C:\Users\Fazliddin\Desktop\MiniProjecfISS\MiniProjecfISS.iml" />
       <module fileurl="file://C:\Users\Utkur\Desktop\MiniProjecfISS\MiniProjectOnISS.iml" filepath="C:\Users\Utkur\Desktop\MiniProjecfISS\MiniProjectOnISS.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Users\Utkur\Desktop\MiniProjecfISS\app\app.iml" filepath="C:\Users\Utkur\Desktop\MiniProjecfISS\app\app.iml" />
+      <module fileurl="file://C:\Users\Fazliddin\Desktop\MiniProjecfISS\app\app.iml" filepath="C:\Users\Fazliddin\Desktop\MiniProjecfISS\app\app.iml" />
     </modules>
   </component>
 </project>
