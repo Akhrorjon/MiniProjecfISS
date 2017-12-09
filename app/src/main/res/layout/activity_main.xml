@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:gravity="center|top"
         android:orientation="vertical"
-        android:paddingTop="70dp"
+        android:paddingTop="60dp"
         android:weightSum="1">
 
         <TextView
