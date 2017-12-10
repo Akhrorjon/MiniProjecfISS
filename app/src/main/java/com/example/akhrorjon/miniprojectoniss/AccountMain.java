@@ -24,6 +24,12 @@ import android.widget.Toast;
 public class AccountMain extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    LinearLayout depositBtn;
+    LinearLayout withdrawBtn;
+    LinearLayout transferBtn;
+    FloatingActionButton fab;
+    DrawerLayout drawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +39,11 @@ public class AccountMain extends AppCompatActivity
 
         this.setTitle("Inha Banking System");
 
-        LinearLayout depositBtn = (LinearLayout)findViewById(R.id.depositXML);
-        LinearLayout withdrawBtn = (LinearLayout)findViewById(R.id.withdrawXML);
-        LinearLayout transferBtn = (LinearLayout)findViewById(R.id.transferXML);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        depositBtn = (LinearLayout)findViewById(R.id.depositXML);
+        withdrawBtn = (LinearLayout)findViewById(R.id.withdrawXML);
+        transferBtn = (LinearLayout)findViewById(R.id.transferXML);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         depositBtn.setOnClickListener(new View.OnClickListener() {
             @Override
