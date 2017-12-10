@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#efefef"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="318dp"
+        android:layout_height="match_parent"
+        android:gravity="center|top"
+        android:orientation="vertical"
+        android:paddingTop="60dp"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Change Password"
+            android:textAlignment="center"
+            android:textColor="#131313"
+            android:textSize="26sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Let's change to secure password"
+            android:textAlignment="center"
+            android:textColor="#8d8d8d"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:id="@+id/edit_sign_in_prev_password"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
+            android:height="45dp"
+            android:background="@drawable/edittextshape"
+            android:hint="Old Password"
+            android:inputType="textPassword"
+            android:textAlignment="center"
+            android:textColor="#555"
+            android:textColorHint="#cbd5dd" />
+
+        <EditText
+            android:id="@+id/edit_sign_in_new_password"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
+            android:height="45dp"
+            android:background="@drawable/edittextshape"
+            android:hint="New Password"
+            android:inputType="textPassword"
+            android:textAlignment="center"
+            android:textColor="#555"
+            android:textColorHint="#cbd5dd" />
+
+        <EditText
+            android:id="@+id/edit_sign_in_new_password1"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
+            android:height="45dp"
+            android:background="@drawable/edittextshape"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:textAlignment="center"
+            android:textColor="#555"
+            android:textColorHint="#cbd5dd" />
+
+        <RelativeLayout
+            android:id="@+id/btn_sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/buttonshape"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="SUBMIT"
+                android:textAlignment="center"
+                android:textColor="#fff" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

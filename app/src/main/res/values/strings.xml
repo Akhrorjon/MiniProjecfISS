@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Inha Banking System</string>
+    <string name="title_activity_account_main">AccountMain</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="customer_list">Customer List</string>
+
+    <string-array name="Customerlist">
+        <item>Axa</item>
+        <item>Shaxa</item>
+        <item>Utkir</item>
+        <item>Fayz</item>
+    </string-array>
 </resources>
