@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, AccountMain.class);
                 finish();
                 startActivity(intent);
-
+//hello
             }
     }
 
