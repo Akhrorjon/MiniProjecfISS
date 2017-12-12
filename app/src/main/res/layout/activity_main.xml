@@ -42,6 +42,7 @@
             android:height="45dp"
             android:background="@drawable/edittextshape"
             android:hint="Username"
+
             android:textAlignment="center"
             android:textColor="#555"
             android:textColorHint="#cbd5dd" />
@@ -64,6 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
+            android:onClick="btnLog"
             android:layout_marginBottom="20dp"
             android:background="@drawable/buttonshape"
             android:clickable="true">
