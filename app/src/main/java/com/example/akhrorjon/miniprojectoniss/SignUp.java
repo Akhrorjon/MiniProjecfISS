@@ -27,6 +27,8 @@ public class SignUp extends AppCompatActivity {
     EditText username;
     EditText password;
     EditText uconpassword;
+    EditText fullname;
+    EditText bankaccount;
     TextView signUp;
     TextView back;
     ArrayList<Person> persons;
@@ -41,20 +43,24 @@ public class SignUp extends AppCompatActivity {
         username = (EditText)findViewById(R.id.edit_sign_in_mail);
         password = (EditText)findViewById(R.id.edit_sign_in_password1);
         uconpassword = (EditText)findViewById(R.id.edit_sign_in_password2);
+        fullname = (EditText)findViewById(R.id.edit_sign_in_fullname);
+        bankaccount = (EditText)findViewById(R.id.edit_sign_in_bankacc);
         signUp = (TextView)findViewById(R.id.signUp);
         back = (TextView)findViewById(R.id.txt_back_log_in);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(SignUp.this,MainActivity.class);
+                finish();
+                startActivity(in);
+            }
+        });
 
         persons = new ArrayList<Person>();
 
         loadData();
 
-    }
-
-    private void setTextToTextView(){
-        String text = "";
-        for (int i=0; i<persons.size(); i++){
-            text = text + persons.get(i).getUname() + " " + persons.get(i).getUpass() + " " + persons.get(i).getSalt() + "\n";
-        }
     }
 
     public void loadData(){
@@ -63,15 +69,14 @@ public class SignUp extends AppCompatActivity {
         File file = getApplicationContext().getFileStreamPath("Users.txt");
         String lineFromFile;
         if(file.exists()){
-            try {
+            try{
                 BufferedReader reader = new BufferedReader(new InputStreamReader(openFileInput("Users.txt")));
                 while ((lineFromFile = reader.readLine()) != null){
                     StringTokenizer tokens = new StringTokenizer(lineFromFile,":");
-                    Person person = new Person(tokens.nextToken(),tokens.nextToken(),tokens.nextToken());
+                    Person person = new Person(tokens.nextToken(),tokens.nextToken(),tokens.nextToken(),tokens.nextToken(),tokens.nextToken(),tokens.nextToken());
                     persons.add(person);
                 }
                 reader.close();
-                setTextToTextView();
             }catch (IOException e){
                 Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -92,40 +97,51 @@ public class SignUp extends AppCompatActivity {
         String username1 = username.getText().toString();
         String password1 = password.getText().toString();
         String password2 = uconpassword.getText().toString();
-        if(username1.length() == 14 ){
+        String fulname = fullname.getText().toString();
+        String bankacc = bankaccount.getText().toString();
+        String balance = "0";
+
+        if(username1.length() < 13 && username1.length() > 5){
             if (password1.length()>=8 ) {
-                if(password1.equals(password2)){
+                if(password1.equals(password2)) {
+                    if (fulname.length() < 30) {
+                        if (bankacc.length() == 14) {
 
-                    String hashpass = sha128(password1);
-                    if (findPerson(username1))
-                        return;
+                            String hashpass = sha128(password1);
+                            if (findPerson(username1))
+                                return;
 
-                    Random rand = new Random();
-                    int n = rand.nextInt(1000000000) + 1;
-                    String randsaltStr = Integer.toString(n);
-                    Person person = new Person(username1, hashpass, randsaltStr);
-                    persons.add(person);
+                            Random rand = new Random();
+                            int n = rand.nextInt(1000000000) + 1;
+                            String randsaltStr = Integer.toString(n);
+                            Person person = new Person(username1, hashpass, randsaltStr, fulname, bankacc,balance);
+                            persons.add(person);
 
-                    setTextToTextView();
-                    try {
-                        FileOutputStream file = openFileOutput("Users.txt", MODE_PRIVATE);
-                        OutputStreamWriter outputFile = new OutputStreamWriter(file);
-                        String temp;
-                        for (int i = 0; i < persons.size(); i++) {
+                            try {
+                                FileOutputStream file = openFileOutput("Users.txt", MODE_PRIVATE);
+                                OutputStreamWriter outputFile = new OutputStreamWriter(file);
+                                String temp;
+                                for (int i = 0; i < persons.size(); i++) {
 
-                            outputFile.write(persons.get(i).getUname() + ":" + persons.get(i).getUpass() + ":" + persons.get(i).getSalt() + "\n");
+                                    outputFile.write(persons.get(i).getUname() + ":" + persons.get(i).getUpass() + ":" + persons.get(i).getSalt() + ":" + persons.get(i).getFname() + ":" + persons.get(i).getBaccount() + ":" + persons.get(i).getBalance() + "\n");
+                                }
+                                outputFile.flush();
+                                outputFile.close();
+
+                                Toast.makeText(SignUp.this, "Successfully saved", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(SignUp.this, MainActivity.class);
+                                startActivity(i);
+                            } catch (IOException e) {
+                                Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(SignUp.this, "Password is not same with confirm password", Toast.LENGTH_SHORT).show();
                         }
-                        outputFile.flush();
-                        outputFile.close();
-
-                        Toast.makeText(SignUp.this, "Successfully saved", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(SignUp.this, MainActivity.class);
-                        startActivity(i);
-                    } catch (IOException e) {
-                        Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(SignUp.this, "Bank account please", Toast.LENGTH_SHORT).show();
                     }
                 }else {
-                    Toast.makeText(SignUp.this, "Password is not same with confirm password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUp.this, "Too long name!", Toast.LENGTH_SHORT).show();
                 }
 
             }else {
@@ -133,7 +149,7 @@ public class SignUp extends AppCompatActivity {
             }
 
         }else {
-            Toast.makeText(SignUp.this, "Enter your Card Number!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUp.this, "User ID size should be between 6 and 12", Toast.LENGTH_SHORT).show();
         }
 
     }

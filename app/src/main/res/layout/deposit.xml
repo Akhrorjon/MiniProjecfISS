@@ -27,7 +27,8 @@
             android:text="Enter amount of money for deposit: "
             android:textSize="18dp" />
 
-        <Button
+        <EditText
+            android:id="@+id/depmoneyEd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"

@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(openFileInput("Users.txt")));
                 while ((lineFromFile = reader.readLine()) != null){
                     StringTokenizer tokens = new StringTokenizer(lineFromFile,":");
-                    Person person = new Person(tokens.nextToken(),tokens.nextToken(),tokens.nextToken());
+                    Person person = new Person(tokens.nextToken(),tokens.nextToken(),tokens.nextToken(),tokens.nextToken(),tokens.nextToken(),tokens.nextToken());
                     persons.add(person);
                 }
                 reader.close();
@@ -84,6 +84,9 @@ public class MainActivity extends AppCompatActivity {
         for (Person person: persons)
             if (person.getUname().equals(usernamelog1)&&person.getUpass().equals(hashpass)) {
                 Intent intent = new Intent(MainActivity.this, AccountMain.class);
+                intent.putExtra("fullname",person.getFname());
+                intent.putExtra("bankaccount",person.getBaccount());
+                intent.putExtra("userbalance",person.getBalance());
                 finish();
                 startActivity(intent);
 //hello

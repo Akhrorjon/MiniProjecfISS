@@ -17,9 +17,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public class AccountMain extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -29,6 +38,11 @@ public class AccountMain extends AppCompatActivity
     LinearLayout transferBtn;
     FloatingActionButton fab;
     DrawerLayout drawer;
+    TextView Tv1,Tv2;
+
+    EditText depEd;
+
+    ArrayList<Person> persons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +51,24 @@ public class AccountMain extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        persons = new ArrayList<Person>();
+        loadData();
+
         this.setTitle("Inha Banking System");
+
+
+        ///////////////////
+        String fullnameStr = getIntent().getExtras().getString("fullname");
+        String bankaStr = getIntent().getExtras().getString("bankaccount");
+        String ubalance = getIntent().getExtras().getString("userbalance");
+
+        Tv1 = (TextView) findViewById(R.id.usernameTv);
+        Tv2 = (TextView) findViewById(R.id.balanceTv);
+
+        Tv1.setText(fullnameStr);
+        Tv2.setText(ubalance);
+
+        ///////////////////
 
         depositBtn = (LinearLayout)findViewById(R.id.depositXML);
         withdrawBtn = (LinearLayout)findViewById(R.id.withdrawXML);
@@ -105,6 +136,28 @@ public class AccountMain extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+
+    public void loadData(){
+        persons.clear();
+
+        File file = getApplicationContext().getFileStreamPath("Users.txt");
+        String lineFromFile;
+        if(file.exists()){
+            try{
+                BufferedReader reader = new BufferedReader(new InputStreamReader(openFileInput("Users.txt")));
+                while ((lineFromFile = reader.readLine()) != null){
+                    StringTokenizer tokens = new StringTokenizer(lineFromFile,":");
+                    Person person = new Person(tokens.nextToken(),tokens.nextToken(),tokens.nextToken(),tokens.nextToken(),tokens.nextToken(),tokens.nextToken());
+                    persons.add(person);
+                }
+                reader.close();
+            }catch (IOException e){
+                Toast.makeText(AccountMain.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 
     @Override
     public void onBackPressed() {

@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:gravity="center|top"
         android:orientation="vertical"
-        android:paddingTop="70dp"
+        android:paddingTop="10dp"
         android:weightSum="1">
 
         <TextView
@@ -24,6 +24,28 @@
             android:textAlignment="center"
             android:textColor="#131313"
             android:textSize="26sp" />
+        <EditText
+            android:id="@+id/edit_sign_in_fullname"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
+            android:height="45dp"
+            android:background="@drawable/edittextshape"
+            android:hint="Full name"
+            android:textAlignment="center"
+            android:textColor="#555"
+            android:textColorHint="#cbd5dd" />
+        <EditText
+            android:id="@+id/edit_sign_in_bankacc"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
+            android:height="45dp"
+            android:background="@drawable/edittextshape"
+            android:hint="Bank account number"
+            android:textAlignment="center"
+            android:textColor="#555"
+            android:textColorHint="#cbd5dd" />
 
         <TextView
             android:layout_width="match_parent"

@@ -16,6 +16,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/usernameTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -61,11 +62,11 @@
                         android:textStyle="normal" />
 
                     <TextView
+                        android:id="@+id/balanceTv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:text="$1234" />
+                        android:layout_marginLeft="10dp"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
