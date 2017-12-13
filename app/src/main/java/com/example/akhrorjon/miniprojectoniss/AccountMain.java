@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -25,9 +26,13 @@ import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.StringTokenizer;
 
 public class AccountMain extends AppCompatActivity
@@ -55,18 +60,20 @@ public class AccountMain extends AppCompatActivity
         loadData();
 
         this.setTitle("Inha Banking System");
-
-
         ///////////////////
-        String fullnameStr = getIntent().getExtras().getString("fullname");
         String bankaStr = getIntent().getExtras().getString("bankaccount");
-        String ubalance = getIntent().getExtras().getString("userbalance");
 
-        Tv1 = (TextView) findViewById(R.id.usernameTv);
-        Tv2 = (TextView) findViewById(R.id.balanceTv);
 
-        Tv1.setText(fullnameStr);
-        Tv2.setText(ubalance);
+        for (Person person: persons)
+            if (person.getBaccount().equals(bankaStr)) {
+                String ful = person.getFname();
+                Tv1 = (TextView) findViewById(R.id.usernameTv);
+                Tv2 = (TextView) findViewById(R.id.balanceTv);
+                Tv1.setText(ful);
+
+            }
+
+
 
         ///////////////////
 
@@ -81,11 +88,14 @@ public class AccountMain extends AppCompatActivity
             public void onClick(View view) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(AccountMain.this);
                 View mView = getLayoutInflater().inflate(R.layout.deposit, null);
+
                 mBuilder.setView(mView);
                 AlertDialog dialog = mBuilder.create();
                 dialog.show();
             }
         });
+
+
 
         withdrawBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +105,7 @@ public class AccountMain extends AppCompatActivity
                 mBuilder.setView(mView);
                 AlertDialog dialog = mBuilder.create();
                 dialog.show();
+
             }
         });
 
@@ -123,6 +134,12 @@ public class AccountMain extends AppCompatActivity
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(AccountMain.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialog_show, null);
                 mBuilder.setView(mView);
+                TextView textView = (TextView)mView.findViewById(R.id.setTv);
+                String text = "";
+                for (int i=0; i<persons.size(); i++){
+                    text = text + persons.get(i).getUname() + " " + persons.get(i).getBaccount() + "\n";
+                }
+                textView.setText(text);
                 AlertDialog dialog = mBuilder.create();
                 dialog.show();
             }
@@ -136,6 +153,24 @@ public class AccountMain extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+/*    public void depositF(){
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(AccountMain.this);
+        View mView = getLayoutInflater().inflate(R.layout.deposit, null);
+        EditText balanceed = (EditText)mView.findViewById(R.id.depmoneyEd);
+
+        String depmoneyStr = balanceed.getText().toString();
+        int depmoneyInt = Integer.parseInt(depmoneyStr);
+
+
+
+        mBuilder.setView(mView);
+
+
+
+
+
+    }*/
 
 
     public void loadData(){
@@ -208,4 +243,12 @@ public class AccountMain extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+
+
+
+
+
 }

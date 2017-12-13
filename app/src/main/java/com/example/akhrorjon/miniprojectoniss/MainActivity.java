@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, AccountMain.class);
                 intent.putExtra("fullname",person.getFname());
                 intent.putExtra("bankaccount",person.getBaccount());
-                intent.putExtra("userbalance",person.getBalance());
                 finish();
                 startActivity(intent);
 //hello

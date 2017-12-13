@@ -14,7 +14,10 @@
         android:background="@drawable/borderbottom"
         android:textStyle="bold"
         />
-    <ListView
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="Smth here"
+        android:textAlignment="center"
+        android:id="@+id/setTv"/>
 </LinearLayout>
